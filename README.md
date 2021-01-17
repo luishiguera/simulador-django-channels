@@ -1,8 +1,14 @@
-# Simulador IoT
+# Backend Django Channels
+
+## Diagrama de secuencia
 
 ![Screenshot](dia.png)
 
-`$ sudo make build`
-`$ sudo make manage CMD="migrate"`
-`$ sudo make pytest`
-`$ sudo make up`
+## Docker usando Makefile
+
+```console
+$ sudo make build
+$ sudo make manage CMD="migrate"
+$ sudo make pytest
+$ sudo make up
+```

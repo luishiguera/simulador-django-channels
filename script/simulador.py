@@ -31,11 +31,11 @@ def crear_dispositivo():
 
 conf = crear_dispositivo()
 
-ID_DISPOSITIVO: str         = conf['identificador']
-SEGUNDOS_HEART_BEAT: int    = 10
-SEGUNDOS_TEMPERATURA: int   = 1
-RANGO_MENOR_TEMP: int       = conf['umbral_minimo']
-RANGO_MAYOR_TEMP: int       = conf['umbral_maximo']
+ID_DISPOSITIVO          = conf['identificador']
+SEGUNDOS_HEART_BEAT     = 10
+SEGUNDOS_TEMPERATURA    = 2.0
+RANGO_MENOR_TEMP        = conf['umbral_minimo']
+RANGO_MAYOR_TEMP        = conf['umbral_maximo']
 
 def heart_beat():
     timestamp = int(time.time())
@@ -50,7 +50,7 @@ def heart_beat():
 def temperatura():
     timestamp = int(time.time())
 
-    time.sleep(2.0)
+    time.sleep(SEGUNDOS_TEMPERATURA)
     datos = {
         'id_dispositivo': ID_DISPOSITIVO,
         'temperatura': randrange(RANGO_MENOR_TEMP, RANGO_MAYOR_TEMP),

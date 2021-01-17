@@ -1,0 +1,25 @@
+title Secuencia Simulador
+
+group Conexion backend Django
+Cliente->>URLRouter:ws /crear/
+Cliente->>URLRouter:ws /registro/
+Cliente->>URLRouter:ws /alerta/
+end
+note over Cliente,URLRouter:Envio de informacion simulado con un **while True**
+URLRouter->>CrearConsumer:JSON del nuevo dispositivo \nenviado desde el configurador del cliente
+URLRouter->>RegistroConsumer:JSON del registro actual del dispositivo \nIdentificador, Temperatura y Timestamp
+URLRouter->>AlertaConsumer:JSON de la alerta tipo umbral o live(heart beat)
+database Postgresql
+group ORM
+CrearConsumer->>Postgresql:Crear un nuevo dispositivo
+RegistroConsumer->>Postgresql:Crear un registro de \ntemperatura, timestamp para un dispositivo
+AlertaConsumer->>Postgresql:Crear una alerta cuando una \ntemperatura esta debajo o sobre \nel umbral y el heart beat cada x segundos
+end
+Postgresql->>Evento(post_save/Registro):
+note over Postgresql,Evento(post_save/Registro): Evento ejecutado luego de una transaccion/creacion \nexitosa en el modelo Registro
+RegistroConsumer<<--Evento(post_save/Registro):Campos umbral_minimo y umbral_maximo de la instancia dispositivo
+CrearConsumer<<--Postgresql:Instancia del dispositivo creado
+AlertaConsumer<<--Postgresql:Instancia de la alerta creada
+Cliente<<--CrearConsumer:JSON de la instancia
+Cliente<<--RegistroConsumer:JSON de los Umbrales/limites
+Cliente<<--AlertaConsumer:JSON de la instancia
