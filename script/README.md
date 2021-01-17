@@ -4,7 +4,7 @@ Simulador de dispositivo IoT en python con el cliente websocket
 ## Funcionamiento
 Funcion para crera un dispositivo por medio de la terminal, tomando valor de identificador, umbrales que seran registrados en la base de datos.
 
-![Screenshot](creacion.png)
+![Screenshot](creacion.png.png)
 
 ```python
 def crear_dispositivo():
