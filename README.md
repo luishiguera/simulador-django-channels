@@ -12,3 +12,7 @@ $ sudo make manage CMD="migrate"
 $ sudo make pytest
 $ sudo make up
 ```
+
+## Simulador
+
+[Enlace](https://github.com/luishiguera/simulador/tree/main/script)
